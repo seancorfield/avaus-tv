@@ -10,5 +10,7 @@
   ;; throw a technical failure and otherwise invalid account number
   (cond (<=   1 account-number 100) true
         (<= 101 account-number 200) false
-        (<= 201 account-number 300) (throw (ex-info "TechnicalFailure" {}))
-        :else                       (throw (ex-info "InvalidAccountNumber" {}))))
+        (<= 201 account-number 300)
+        (throw (avaus.eligibility.TechnicalFailureException.))
+        :else
+        (throw (avaus.eligibility.InvalidAccountNumberException.))))

@@ -14,7 +14,7 @@
                       (if-let [prize (c/prizes ch)]
                         (conj prizes prize)
                         prizes)) #{} channels)))
-    (catch Exception e
-      (if (= "InvalidAccountNumber" (.getMessage e))
-        (throw e)
-        []))))
+    (catch avaus.eligibility.InvalidAccountNumberException e
+      (throw (avaus.prize.InvalidAccountNumberException.)))
+    (catch avaus.eligibility.TechnicalFailureException e
+      [])))
